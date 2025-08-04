@@ -20,5 +20,4 @@ void main(){
     } else {
         printf("Diferentes");
     }
-    
 }
