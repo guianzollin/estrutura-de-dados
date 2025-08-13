@@ -8,13 +8,17 @@ typedef struct {
 
 void inserir(REGISTRO *p) {
     float altura, largura, profundidade;
+    int indice;
     puts("informe a altura");
     scanf("%f", &altura);
     puts("informe a largura");
     scanf("%f", &largura);
     puts("informe a profundidade");
     scanf("%f", &profundidade);
-    // salvar o valor das variáveis em registros
+    // solicitar ao user qual o indice (0 a 9)
+    (p+indice)->altura = altura;
+    (p+indice)->largura = largura;
+    (p+indice)->profundidade = profundidade;
 }
 
 void main () {
