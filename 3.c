@@ -6,7 +6,7 @@ typedef struct {
     float profundidade;
 } REGISTRO;
 
-void inserir(REGISTRO *p) {
+void inserirOuAlterar(REGISTRO *p) {
     float altura, largura, profundidade;
     int indice;
     puts("informe a altura");
@@ -15,10 +15,29 @@ void inserir(REGISTRO *p) {
     scanf("%f", &largura);
     puts("informe a profundidade");
     scanf("%f", &profundidade);
-    // solicitar ao user qual o indice (0 a 9)
+    puts("informe o indice (0 a 9):");
+    scanf("%i", &indice);
     (p+indice)->altura = altura;
     (p+indice)->largura = largura;
     (p+indice)->profundidade = profundidade;
+}
+
+void excluir(REGISTRO *p) {
+    int indice;
+    puts("informe o indice (0 a 9):");
+    scanf("%i", &indice);
+    (p+indice)->altura = 0;
+    (p+indice)->largura = 0;
+    (p+indice)->profundidade = 0;
+}
+
+void mostrar(REGISTRO *p) {
+    int indice;
+    puts("informe o indice (0 a 9):");
+    scanf("%i", &indice);
+    printf("Altura %.2f \n", (p+indice)->altura);
+    printf("Largura %.2f \n", (p+indice)->largura);
+    printf("Profundidade %.2f \n", (p+indice)->profundidade);
 }
 
 void main () {
@@ -37,16 +56,16 @@ void main () {
         switch (opcao)
         {
         case 1:
-            inserir(registros);
+            inserirOuAlterar(registros);
             break;
         case 2:
-            /* code */
+            inserirOuAlterar(registros);
             break;
         case 3:
-            /* code */
+            excluir(registros);
             break;
         case 4:
-            /* code */
+            mostrar(registros);
             break;
         }
     }
