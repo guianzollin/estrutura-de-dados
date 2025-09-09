@@ -19,38 +19,42 @@ void imprimir(REGISTRO *p){
         printf("%i -> ", p->valor);
         p = p->prox;
     }
-    printf("NULL \n\n");
+    printf("NULL\n");
+}
+
+void excluir(REGISTRO **ref, int valor){
+
+    REGISTRO *atual = *ref;
+    REGISTRO *anterior = NULL;
+
+    while(atual != NULL && atual->valor != valor){
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(atual == NULL) {
+        printf("Valor %d nao encontrado.\n", valor);
+        return;
+    }
+
+    if(anterior == NULL){
+        *ref = atual->prox;
+    } else {
+        anterior->prox = atual->prox;
+    }
+
+    free(atual);
+    printf("Valor %d excluido.\n", valor);
 }
 
 void main () {
-    REGISTRO *registros = NULL;
-    int opcao, valor;
 
-    while(opcao != 5) {
-        puts("Escolha uma opcao a seguir:");
-        puts("1. Inserir registro");
-        puts("2. Alterar registro");
-        puts("3. Excluir registro");
-        puts("4. Mostrar registro");
-        puts("5. Sair");
-        scanf("%i", &opcao);
+    REGISTRO *inicio = NULL;
 
-        switch (opcao)
-        {
-        case 1:
-            printf("Informe o valor: ");
-            scanf("%i", &valor);
-            inserir(&registros, valor);
-            break;
-        case 2:
-            
-            break;
-        case 3:
-            
-            break;
-        case 4:
-            imprimir(registros);
-            break;
-        }
-    }
+    inserir(&inicio, 10);
+    inserir(&inicio, 20);
+    inserir(&inicio, 30);
+    imprimir(inicio);
+    excluir(&inicio, 20);
+    imprimir(inicio);
 }
